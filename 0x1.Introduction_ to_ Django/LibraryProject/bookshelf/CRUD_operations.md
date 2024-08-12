@@ -17,6 +17,7 @@ AttributeError: type object 'Book' has no attribute 'object'. Did you mean: 'obj
 <bound method Model.save of <Book: Nineteen Eighty-Four>>
 >>> book.title
 'Nineteen Eighty-Four'
+>>> from bookshelf.models import Book
 >>> book.delete()
 (1, {'bookshelf.Book': 1})
 >>> Book.objects.all()
