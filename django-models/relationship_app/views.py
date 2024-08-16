@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 # Create your views here.
 
@@ -21,17 +21,8 @@ class LibraryDetailView(DetailView):
 
 
 from django.contrib.auth.views import LoginView, LogoutView
-from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
-
-# Login View
-class CustomLoginView(LoginView):
-    template_name = 'relationship_app/login.html'
-
-# Logout View
-class CustomLogoutView(LogoutView):
-    template_name = 'relationship_app/logout.html'
 
 # Registration View
 def register(request):
@@ -44,3 +35,13 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'relationship_app/register.html', {'form': form})
+
+# Login View
+class CustomLoginView(LoginView):
+    template_name = 'relationship_app/login.html'
+
+# Logout View
+class CustomLogoutView(LogoutView):
+    template_name = 'relationship_app/logout.html'
+
+
