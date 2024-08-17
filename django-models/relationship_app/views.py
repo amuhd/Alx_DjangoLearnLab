@@ -12,7 +12,6 @@ def library_details(request, library_id):
 
 
 from django.views.generic import ListView, DetailView
-from .models import Book, Library
 
 class BookListView(ListView):
     model = Book
