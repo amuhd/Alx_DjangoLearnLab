@@ -13,10 +13,9 @@ def library_details(request, library_id):
 
 
 from django.views.generic.detail import DetailView
-from django.views.generic.detail import ListView
 from .models import Library
 
-class BookListView(ListView):
+class BookListView(DetailView):
     model = Book
     template_name = 'relationship_app/list_books.html'
 
