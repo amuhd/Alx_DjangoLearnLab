@@ -1,5 +1,3 @@
-# relationship_app/views.py
-
 from django.shortcuts import render
 from .models import Book, Library
 
@@ -9,10 +7,9 @@ def list_books(request):
 
 def library_details(request, library_id):
     library = Library.objects.get(id=library_id)
-    return render(request, 'relationship_app/library_details.html', {'library': library})
+    return render(request, 'relationship_app/library_detail.html', {'library': library})
 
 
-# relationship_app/views.py
 
 from django.views.generic import ListView, DetailView
 from .models import Book, Library
@@ -23,4 +20,4 @@ class BookListView(ListView):
 
 class LibraryDetailView(DetailView):
     model = Library
-    template_name = 'relationship_app/library_details.html'
+    template_name = 'relationship_app/library_detail.html'
