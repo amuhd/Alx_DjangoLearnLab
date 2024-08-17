@@ -15,12 +15,8 @@ def library_details(request, library_id):
     library = Library.objects.get(id=library_id)
     return render(request, 'relationship_app/library_details.html', {'library': library})
 
-from django.views.generic.detail import ListView, DetailView
+from django.views.generic.detail import DetailView
 from .models import Library
-
-class BookListView(ListView):
-    model = Book
-    template_name = 'relationship_app/list_books.html'
 
 class LibraryDetailView(DetailView):
     model = Library
