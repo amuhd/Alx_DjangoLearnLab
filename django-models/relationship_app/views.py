@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 
-from .models import Book
+from .models import Book, Library
 
 def list_books(request):
     books = Book.objects.all()
@@ -11,8 +11,16 @@ def list_books(request):
     }
     return render(request, 'relationship_app/list_books.html', context)
 
-from django.views.generic.detail import DetailView
-from .models import Library
+def library_details(request, library_id):
+    library = Library.objects.get(id=library_id)
+    return render(request, 'relationship_app/library_details.html', {'library': library})
+
+from django.views.generic.detail import ListView, DetailView
+from .models import Book, Library
+
+class BookListView(ListView):
+    model = Book
+    template_name = 'relationship_app/list_books.html'
 
 class LibraryDetailView(DetailView):
     model = Library
