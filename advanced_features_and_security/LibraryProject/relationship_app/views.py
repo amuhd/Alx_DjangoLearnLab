@@ -180,3 +180,14 @@ class BookDeleteView(PermissionRequiredMixin, DeleteView):
     template_name = 'bookshelf/book_confirm_delete.html'
     success_url = reverse_lazy('book_list')
     permission_required = 'relationship_app.can_delete'
+    
+    
+
+def search_books(request):
+    query = request.GET.get('q', '')
+    if query:
+        # Properly use Django ORM to parameterize queries
+        books = Book.objects.filter(title__icontains=query)
+    else:
+        books = Book.objects.all()
+    return render(request, 'books/book_list.html', {'books': books})
