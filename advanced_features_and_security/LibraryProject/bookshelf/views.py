@@ -8,3 +8,13 @@ from .models import Book
 def book_list(request):
     books = Book.objects.all()  # Fetch all books
     return render(request, 'bookshelf/book_list.html', {'books': books})
+
+
+from .forms import ExampleForm
+
+def search_view(request):
+    form = ExampleForm(request.GET or None)
+    if form.is_valid():
+        query = form.cleaned_data['query']
+        # Perform your search logic here
+    return render(request, 'bookshelf/search.html', {'form': form})
