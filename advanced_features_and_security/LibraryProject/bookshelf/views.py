@@ -18,3 +18,9 @@ def search_view(request):
         query = form.cleaned_data['query']
         # Perform your search logic here
     return render(request, 'bookshelf/search.html', {'form': form})
+
+from .forms import ExampleForm
+
+def search_view(request):
+    form = ExampleForm(request.GET or None)
+    return render(request, 'bookshelf/form_example.html', {'form': form})
