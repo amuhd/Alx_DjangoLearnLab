@@ -131,7 +131,7 @@ STATIC_URL = '/static/'
 
 # Optional: Define STATICFILES_DIRS if you have additional static files directories
 STATICFILES_DIRS = [
-    BASE_DIR / "static",  # Adjust this path if your static files are located elsewhere
+    BASE_DIR / "blog/static",  # Adjust this path if your static files are located elsewhere
 ]
 
 
