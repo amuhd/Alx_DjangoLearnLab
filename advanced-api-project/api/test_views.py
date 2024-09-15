@@ -1,11 +1,10 @@
-from django.test import TestCase
-from rest_framework.test import APIClient
+from rest_framework.test import APITestCase, APIClient
 from rest_framework import status
 from django.urls import reverse
 from .models import Author, Book
 
 # TEST CREATE BOOK
-class BookAPITests(TestCase):
+class BookAPITests(APITestCase):
     def setUp(self):
         self.client = APIClient()
         self.author = Author.objects.create(name="J.K. Rowling")
