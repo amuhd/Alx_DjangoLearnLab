@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.exceptions import ValidationError
 from .models import Book
 from .serializers import BookSerializer
@@ -41,6 +42,18 @@ class BookDetailView(generics.RetrieveUpdateDestroyAPIView):
         if publication_year > datetime.date.today().year:
             raise ValidationError("Publication year cannot be in the future.")
         serializer.save()
+
+# CreateView for adding a new book
+class BookCreateView(generics.CreateAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = [IsAuthenticated]  # Only authenticated users can create books
+
+# UpdateView for modifying an existing book
+class BookUpdateView(generics.UpdateAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+    permission_classes = [IsAuthenticated]  # Only authenticated users can update books
 
 # DeleteView to remove a book by ID
 class BookDeleteView(generics.DestroyAPIView):
