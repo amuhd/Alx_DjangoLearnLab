@@ -35,3 +35,12 @@ The API supports the following query capabilities on the Book model:
    - Default ordering is by `title`.
 
 Ensure to test these features with various query parameters to see how the API handles them.
+
+# Testing the API
+
+### Running Unit Tests:
+- The tests simulate API requests for CRUD operations on the Book model, including filtering, searching, and ordering.
+- To run the tests, use the following command:
+
+```bash command is:
+python manage.py test api
