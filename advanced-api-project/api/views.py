@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, filters
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.exceptions import ValidationError
 from .models import Book
 from .serializers import BookSerializer
@@ -12,11 +13,16 @@ import datetime
 # Handles listing and creation of Book instances. Allows read-only access for unauthenticated users,
 # and restricts creation to authenticated users.
 
-# ListView to retrieve all books
+# ListView to retrieve all books and filters
 class BookListView(generics.ListCreateAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     permission_classes = [IsAuthenticatedOrReadOnly]  # Read-only access for unauthenticated users
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filterset_fields = ['title', 'author', 'publication_year']  # Fields to filter by title, author and pub. year
+    search_fields = ['title', 'author__name']  # Enable search by title and author's name
+    ordering_fields = ['title', 'publication_year']  # Allow ordering by title and year
+    ordering = ['title']  # Default ordering by title
 
 # BookDetailView:
 # Handles retrieving, updating, and deleting a specific Book instance. Restricts modification (update, delete) to authenticated users.
