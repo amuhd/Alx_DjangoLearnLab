@@ -6,5 +6,5 @@ urlpatterns = [
     path('books/<int:pk>/', BookDetailView.as_view(), name='book-detail'),  # View Books
     path('books/create/', BookCreateView.as_view(), name='book-create'),  # Create a new book
     path('books/update/<int:pk>/', BookUpdateView.as_view(), name='book-update'),  # Update an existing book 
-    path('books/<int:pk>/delete/', BookDeleteView.as_view(), name='book-delete'),  # Add delete endpoint
+    path('books/delete/<int:pk>/', BookDeleteView.as_view(), name='book-delete'),  # Add delete endpoint
 ]
