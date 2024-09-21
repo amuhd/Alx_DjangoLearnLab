@@ -44,3 +44,21 @@ Process: Click the delete button next to the comment to remove it permanently.
 Visibility and Permissions
 Public Access: All users can view comments on blog posts, regardless of authentication status.
 Permission Enforcement: The system checks user authentication and ownership before allowing edits or deletions.
+
+Adding Tags to Posts
+When creating or editing a blog post, users can add tags to categorize their content. Here's how it works:
+
+Tag Input Field: In the post creation and editing forms, there is a designated field for tags. Users can enter existing tags or create new ones. Tags should be separated by commas.
+
+Validation: The form validates the input to ensure that tags are unique and correctly formatted.
+
+Saving Tags: Upon submission, the selected tags are associated with the post in the database, enabling efficient organization and retrieval.
+
+Utilizing the Search Bar
+Users can easily search for blog content using the search bar available on the site. Here's how:
+
+Search Functionality: The search bar allows users to input keywords related to the post titles, content, or associated tags.
+
+Dynamic Filtering: When a user submits a search query, the application dynamically filters and displays all matching posts based on the entered keywords.
+
+Results Display: The results page shows a list of posts that match the search criteria, providing users with quick access to relevant content.

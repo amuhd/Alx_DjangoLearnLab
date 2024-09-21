@@ -158,3 +158,20 @@ class CommentDeleteView(DeleteView):
 
     def get_success_url(self):
         return self.object.post.get_absolute_url()  # Redirect to the related post after deletion
+
+from django.db.models import Q
+from django.shortcuts import render
+from .models import Post
+
+def search(request):
+    query = request.GET.get('q')
+    results = Post.objects.filter(Q(title__icontains=query) | Q(content__icontains=query))
+    return render(request, 'search_results.html', {'results': results})
+
+from django.shortcuts import render, get_object_or_404
+from .models import Tag, Post
+
+def TagView(request, tag_name):
+    tag = get_object_or_404(Tag, name=tag_name)
+    posts = tag.posts.all()  # Retrieve all posts associated with this tag
+    return render(request, 'blog/tag_detail.html', {'tag': tag, 'posts': posts})
