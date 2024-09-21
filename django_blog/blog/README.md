@@ -31,3 +31,16 @@ To create a new post, go to /posts/new/ (only accessible if logged in).
 To view a specific post, visit /posts/<post_id>/.
 To edit a post, visit /posts/<post_id>/edit/ (only for post authors).
 To delete a post, visit /posts/<post_id>/delete/ (only for post authors).
+
+Adding Comments
+Authenticated Users Only: Only logged-in users can add comments to blog posts.
+Process: Navigate to a blog post detail page and fill out the comment form, then submit.
+Editing Comments
+Ownership Required: Users can only edit their own comments.
+Process: Click the edit button next to the comment to access the edit form, make changes, and submit.
+Deleting Comments
+Ownership Required: Only the author of the comment can delete it.
+Process: Click the delete button next to the comment to remove it permanently.
+Visibility and Permissions
+Public Access: All users can view comments on blog posts, regardless of authentication status.
+Permission Enforcement: The system checks user authentication and ownership before allowing edits or deletions.

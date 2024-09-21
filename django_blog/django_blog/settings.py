@@ -76,14 +76,14 @@ WSGI_APPLICATION = 'django_blog.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-'''DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-}'''
+}
 
-DATABASES = {
+'''DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',  # The backend engine 
         'NAME': 'your_db_name',                    # The name of your database
@@ -92,7 +92,7 @@ DATABASES = {
         'HOST': 'localhost',                       # Database host
         'PORT': '5432',                            # Port number
     }
-}
+}'''
 
 
 # Password validation
@@ -132,7 +132,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'static'),
 ]
 
 # Default primary key field type

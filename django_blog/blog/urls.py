@@ -24,3 +24,12 @@ urlpatterns = [
     path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
 ]
+
+from .views import add_comment, edit_comment, delete_comment
+
+urlpatterns = [
+    path('posts/<int:post_id>/comments/new/', add_comment, name='add-comment'),
+    path('comments/<int:comment_id>/edit/', edit_comment, name='edit-comment'),
+    path('comments/<int:comment_id>/delete/', delete_comment, name='delete-comment'),
+    # Other URLs...
+]
