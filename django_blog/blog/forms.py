@@ -61,7 +61,7 @@ class TagWidget(forms.TextInput):
         super().__init__(*args, **kwargs)
 
 class PostForm(forms.ModelForm):
-    tags = forms.CharField(widget=TagWidget(attrs={'placeholder': 'Add tags separated by commas'}), required=False)
+    tags = forms.CharField(widget=TagWidget(), required=False)
 
     class Meta:
         model = Post
