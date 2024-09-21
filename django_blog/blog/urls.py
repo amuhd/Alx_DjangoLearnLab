@@ -51,3 +51,12 @@ urlpatterns = [
     path('search/', search, name='search'),
     path('tags/<str:tag_name>/', TagView.as_view(), name='tag-posts'),  # Example for tag view
 ]
+
+from django.urls import path
+from .views import PostByTagListView  # Ensure this is imported
+
+urlpatterns = [
+    # Other URL patterns...
+    path('tags/<slug:tag_slug>/', PostByTagListView.as_view(), name='posts_by_tag'),
+]
+

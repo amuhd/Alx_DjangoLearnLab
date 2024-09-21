@@ -175,3 +175,15 @@ def TagView(request, tag_name):
     tag = get_object_or_404(Tag, name='tags__name__icontains')
     posts = tag.posts.all()  # Retrieve all posts associated with this tag
     return render(request, 'blog/tag_detail.html', {'tag': tag, 'posts': posts})
+
+
+from django.views.generic import ListView
+from .models import Post, Tag
+
+class PostByTagListView(ListView):
+    model = Post
+    template_name = 'blog/post_by_tag.html'  # Create this template
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        return Post.objects.filter(tags__name=self.kwargs['tag_slug'])
