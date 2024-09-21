@@ -118,3 +118,43 @@ def delete_comment(request, comment_id):
         comment.delete()
         return redirect('post-detail', pk=post_id)
     return render(request, 'blog/delete_comment.html', {'comment': comment})
+
+from django.views.generic import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from .models import Comment
+from .forms import CommentForm
+
+class CommentCreateView(CreateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'comments/comment_form.html'  # Create this template
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user  # Set the comment author to the logged-in user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return self.object.post.get_absolute_url()  # Redirect to the related post after creation
+
+class CommentUpdateView(UpdateView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'comments/comment_form.html'  # Use the same template for editing
+
+    def get_queryset(self):
+        # Ensure that users can only edit their own comments
+        return Comment.objects.filter(author=self.request.user)
+
+    def get_success_url(self):
+        return self.object.post.get_absolute_url()  # Redirect to the related post after editing
+
+class CommentDeleteView(DeleteView):
+    model = Comment
+    template_name = 'comments/comment_confirm_delete.html'  # Create this template
+
+    def get_queryset(self):
+        # Ensure that users can only delete their own comments
+        return Comment.objects.filter(author=self.request.user)
+
+    def get_success_url(self):
+        return self.object.post.get_absolute_url()  # Redirect to the related post after deletion
