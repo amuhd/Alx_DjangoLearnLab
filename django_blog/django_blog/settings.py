@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-import os
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ufj2!^7wagqojo8m94by-uubxiv98#f4=35tm99ug3i*o)ej7d'
+SECRET_KEY = 'django-insecure-n6mgmtj3gy#*%hsh^^)fqe922!lu^5xu$3f)erv2!zg#vrbaje'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
 ]
 
 MIDDLEWARE = [
@@ -52,27 +51,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'django_blog.urls'
 
-'''STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]'''
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-# ... (other settings)
-
-STATIC_URL = '/static/'
-
-# Update this line to point to the correct static files directory
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'blog', 'static'),
-]
-
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
