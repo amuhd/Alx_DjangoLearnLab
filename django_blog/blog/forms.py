@@ -37,7 +37,7 @@ class PostForm(forms.ModelForm):
 
 
 class PostForm(forms.ModelForm):
-    tags = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Add tags separated by commas'}), required=False)
+    tags = forms.CharField(widgets=forms.TextInput(attrs={'placeholder': 'Add tags separated by commas'}), required=False)
 
     class Meta:
         model = Post
@@ -61,7 +61,7 @@ class TagWidget(forms.TextInput):
         super().__init__(*args, **kwargs)
 
 class PostForm(forms.ModelForm):
-    tags = forms.CharField(widget=TagWidget(), required=False)
+    tags = forms.CharField(widgets=TagWidget(), required=False)
 
     class Meta:
         model = Post
