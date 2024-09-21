@@ -34,3 +34,22 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ['title', 'content', 'tags']
+
+
+class PostForm(forms.ModelForm):
+    tags = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Add tags separated by commas'}), required=False)
+
+    class Meta:
+        model = Post
+        fields = ['title', 'content', 'tags']
+
+    def save(self, commit=True):
+        post = super().save(commit=False)
+        if commit:
+            post.save()
+            # Handle tag saving
+            tag_names = [tag.strip() for tag in self.cleaned_data['tags'].split(',') if tag]
+            for tag_name in tag_names:
+                tag, created = Tag.objects.get_or_create(name=tag_name)
+                post.tags.add(tag)
+        return post
