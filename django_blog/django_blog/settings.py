@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-a^a_(2=0b9$8+=^u59t)sebb1jiz^j2eh3gu&r0n(7^=c&r8ex'
+SECRET_KEY = 'django-insecure-ufj2!^7wagqojo8m94by-uubxiv98#f4=35tm99ug3i*o)ej7d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -52,6 +52,23 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'django_blog.urls'
 
+'''STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]'''
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# ... (other settings)
+
+STATIC_URL = '/static/'
+
+# Update this line to point to the correct static files directory
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'blog', 'static'),
+]
+
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -80,17 +97,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-'''DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydatabase',
-        'USER': 'abdulmalik',
-        'PASSWORD': 'Soccer88@',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}'''
 
 
 # Password validation
@@ -127,17 +133,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/static/'
-
-# Optional: Define STATICFILES_DIRS if you have additional static files directories
-STATICFILES_DIRS = [
-    BASE_DIR / "blog/static",  # Adjust this path if your static files are located elsewhere
-]
-
-
-'''STATIC_URL = 'static/'
-BASE_DIR = Path(__file__).resolve().parent.parent
-STATICFILES_DIRS = [BASE_DIR / 'blog/static']'''
+STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
