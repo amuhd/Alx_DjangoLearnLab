@@ -37,10 +37,13 @@ class PostViewSet(viewsets.ModelViewSet):
 from rest_framework import generics
 from .models import Post
 from .serializers import PostSerializer
+from accounts.models import CustomUser
 
 class UserFeed(generics.ListAPIView):
     serializer_class = PostSerializer
     
     def get_queryset(self):
-        return Post.objects.filter(author__in=self.request.user.following.all()).order_by('-created_at')
+        current_user = self.request.user
+        following_users = current_user.following.all()
+        return Post.objects.filter(author__in=following_users.all()).order_by('-created_at')
         
