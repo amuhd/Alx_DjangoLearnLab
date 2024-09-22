@@ -21,3 +21,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
 ]
+
+from django.urls import path, include
+
+urlpatterns = [
+    path('accounts/', include('accounts.urls')),  # Existing
+    path('api/', include('posts.urls')),  # New for posts and comments
+]
