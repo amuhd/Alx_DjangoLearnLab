@@ -42,4 +42,5 @@ class UserFeed(generics.ListAPIView):
     serializer_class = PostSerializer
     
     def get_queryset(self):
-        return Post.objects.filter(author__in=following_users).order_by # type: ignore
+        return Post.objects.filter(author__in=following_users.following.all()).order_by # type: ignore
+        
