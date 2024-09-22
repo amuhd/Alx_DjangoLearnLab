@@ -26,3 +26,25 @@ class LoginView(APIView):
             token, created = Token.objects.get_or_create(user=user)
             return Response({'token': token.key}, status=status.HTTP_200_OK)
         return Response({'error': 'Invalid Credentials'}, status=status.HTTP_400_BAD_REQUEST)
+
+from rest_framework import generics, permissions
+from .models import CustomUser
+from .serializers import UserSerializer
+from rest_framework.response import Response
+from rest_framework import status
+
+class FollowUser(generics.UpdateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def post(self, request, user_id):
+        user_to_follow = CustomUser.objects.get(id=user_id)
+        request.user.following.add(user_to_follow)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+class UnfollowUser(generics.UpdateAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    
+    def post(self, request, user_id):
+        user_to_unfollow = CustomUser.objects.get(id=user_id)
+        request.user.following.remove(user_to_unfollow)
+        return Response(status=status.HTTP_204_NO_CONTENT)
