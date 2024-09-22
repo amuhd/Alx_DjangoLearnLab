@@ -46,4 +46,4 @@ class UserFeed(generics.ListAPIView):
         current_user = self.request.user
         following_users = current_user.following.all()
         return Post.objects.filter(author__in=following_users.all()).order_by('-created_at')
-        
+        return Post.objects.filter(author__in=following_users).order_by
