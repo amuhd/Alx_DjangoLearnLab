@@ -60,7 +60,7 @@ class LikePost(generics.CreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def post(self, request, pk, *args, **kwargs):
-        post = get_object_or_404(Post, pk=pk)  # Retrieve the post
+        post = generics.get_object_or_404(Post, pk=pk)  # Retrieve the post
         like, created = Like.objects.get_or_create(user=request.user, post=post)  # Like or get existing
 
         if created:
@@ -80,7 +80,7 @@ class UnlikePost(generics.DestroyAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def delete(self, request, pk, *args, **kwargs):
-        post = get_object_or_404(Post, pk=pk)  # Retrieve the post
+        post = generics.get_object_or_404(Post, pk=pk)  # Retrieve the post
         try:
             like = Like.objects.get(user=request.user, post=post)  # Find the like
             like.delete()  # Remove the like
