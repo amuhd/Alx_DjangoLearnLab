@@ -33,18 +33,18 @@ from .serializers import UserSerializer
 from rest_framework.response import Response
 from rest_framework import status
 
-class FollowUser(generics.UpdateAPIView):
+class FollowUser(generics.GenericAPIView):
     permission_classes = [permissions.IsAuthenticated]
     
     def post(self, request, user_id):
-        user_to_follow = CustomUser.objects.get(id=user_id)
+        user_to_follow = CustomUser.objects.all()
         request.user.following.add(user_to_follow)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-class UnfollowUser(generics.UpdateAPIView):
+class UnfollowUser(generics.GenericAPIView):
     permission_classes = [permissions.IsAuthenticated]
     
     def post(self, request, user_id):
-        user_to_unfollow = CustomUser.objects.get(id=user_id)
+        user_to_unfollow = CustomUser.objects.all()
         request.user.following.remove(user_to_unfollow)
         return Response(status=status.HTTP_204_NO_CONTENT)
