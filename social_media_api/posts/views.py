@@ -42,4 +42,4 @@ class UserFeed(generics.ListAPIView):
     serializer_class = PostSerializer
     
     def get_queryset(self):
-        return Post.objects.filter(author__in=self.request.user.following.all()).order_by('-created_at')
+        return Post.objects.filter(author__in=following_users).order_by # type: ignore
