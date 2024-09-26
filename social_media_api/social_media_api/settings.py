@@ -26,6 +26,11 @@ SECRET_KEY = 'django-insecure-2*!iz9tu3kt8gyos*r10z!k25&_ud#clar4o9sdm8x)nxr+h(8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+
+# Set default port or fetch from environment variables
+PORT = os.getenv("PORT", "8000")
+
+
 ALLOWED_HOSTS = []
 
 SECURE_BROWSER_XSS_FILTER = True
